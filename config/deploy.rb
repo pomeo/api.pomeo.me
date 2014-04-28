@@ -1,7 +1,7 @@
 #========================
 #CONFIG
 #========================
-set :application, "expressjs4-template"
+set :application, "api.pomeo.me"
 #========================
 #CONFIG
 #========================
