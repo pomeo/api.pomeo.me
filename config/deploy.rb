@@ -8,8 +8,8 @@ set :application, "api.pomeo.me"
 require           "capistrano-offroad"
 offroad_modules   "defaults", "supervisord"
 set :repository,  "git@github.com:pomeo/#{application}.git"
-set :supervisord_start_group, "app"
-set :supervisord_stop_group, "app"
+set :supervisord_start_group, "api"
+set :supervisord_stop_group,  "api"
 #========================
 #ROLES
 #========================
