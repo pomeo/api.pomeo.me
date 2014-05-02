@@ -13,6 +13,6 @@ set :supervisord_stop_group,  "api"
 #========================
 #ROLES
 #========================
-role :app,        "ubuntu@178.62.2.107" # lxc container
+role :app,        "ubuntu@api.pomeo.me"
 
 after "deploy:create_symlink", "deploy:npm_install", "deploy:restart"
