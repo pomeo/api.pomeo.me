@@ -16,4 +16,10 @@ set :supervisord_stop_group,  "api"
 #========================
 role :app,        "ubuntu@api.pomeo.me"
 
-after "deploy:create_symlink", "deploy:npm_install", "deploy:restart"
+namespace :deploy do 
+  desc "Change node.js port"
+  task :chg_port do
+    run "sed -i 's/3000/4000/g' #{current_path}/app.js"
+  end
+end
+
