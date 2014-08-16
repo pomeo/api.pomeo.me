@@ -23,3 +23,4 @@ namespace :deploy do
   end
 end
 
+after "deploy:create_symlink", "deploy:npm_install", "deploy:chg_port", "deploy:restart"
