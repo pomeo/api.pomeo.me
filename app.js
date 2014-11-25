@@ -1,11 +1,8 @@
 var express = require('express');
-var debug = require('debug')('my-application');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
+var debug = require('debug')('api.pomeo.me');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
@@ -14,19 +11,11 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-if (app.get('env') !== 'development') {
-  app.enable('view cache');
-}
 app.enable('trust proxy');
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(session({ store: new RedisStore({host:'redis.fr1.server.sovechkin.com', port:6379, pass:''}), secret: process.env.SECRET }))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
