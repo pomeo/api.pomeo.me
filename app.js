@@ -1,7 +1,7 @@
 var express = require('express');
 var debug = require('debug')('api.pomeo.me');
 var path = require('path');
-var favicon = require('static-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
