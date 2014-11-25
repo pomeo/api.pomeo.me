@@ -8,14 +8,12 @@ var express    = require('express'),
     }),
     debugOn    = true;
 
-/* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.send('ok');
 });
 
 module.exports = router;
 
-//Логгер в одном месте, для упрощения перезда на любой логгер.
 function log(logMsg) {
   if (logMsg instanceof Error) logger.error(logMsg.stack);
   if (debugOn) {
