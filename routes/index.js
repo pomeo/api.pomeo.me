@@ -17,6 +17,6 @@ module.exports = router;
 function log(logMsg) {
   if (logMsg instanceof Error) logger.error(logMsg.stack);
   if (debugOn) {
-      logger.info(logMsg);
+    logger.info(logMsg);
   }
 };
