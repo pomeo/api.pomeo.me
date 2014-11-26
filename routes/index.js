@@ -1,6 +1,7 @@
 var express    = require('express'),
     router     = express.Router(),
     winston    = require('winston'),
+    xml2js     = require('xml2js'),
     logger     = new (winston.Logger)({
       transports: [
         new (winston.transports.Console)()
