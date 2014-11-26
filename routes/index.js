@@ -8,6 +8,7 @@ var express    = require('express'),
       ]
     }),
     moment     = require('moment'),
+    rest       = require('restler'),
     debugOn    = true;
 
 router.get('/', function(req, res) {
