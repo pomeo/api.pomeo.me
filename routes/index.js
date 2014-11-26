@@ -6,6 +6,7 @@ var express    = require('express'),
         new (winston.transports.Console)()
       ]
     }),
+    moment     = require('moment'),
     debugOn    = true;
 
 router.get('/', function(req, res) {
