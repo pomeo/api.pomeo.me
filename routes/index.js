@@ -4,6 +4,7 @@ var express    = require('express'),
     xml2js     = require('xml2js'),
     moment     = require('moment'),
     rest       = require('restler'),
+    Twit       = require('twit'),
     NodeCache  = require('node-cache'),
     myCache    = new NodeCache({stdTTL: 3600, checkperiod: 120}),
     Logentries = require('winston-logentries');
