@@ -37,20 +37,25 @@ router.get('/', function(req, res) {
 router.get('/twitter', function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
-  T.get('statuses/user_timeline', {
-    screen_name: 'pomeo',
-    count: 2
-  }, function (err, statuses) {
-       var twArray = [];
-       for (var i = 0; i < statuses.length; i++) {
-         twArray.push({
-           url: 'https://twitter.com/pomeo/statuses/' + statuses[i].id_str,
-           date: moment(statuses[i].created_at).fromNow(),
-           content: statuses[i].text
-         });
-       }
-       res.json(twArray);
-  });
+  if (Object.getOwnPropertyNames(myCache.get('twitter')).length == 0) {
+    T.get('statuses/user_timeline', {
+      screen_name: 'pomeo',
+      count: 2
+    }, function (err, statuses) {
+         var twArray = [];
+         for (var i = 0; i < statuses.length; i++) {
+           twArray.push({
+             url: 'https://twitter.com/pomeo/statuses/' + statuses[i].id_str,
+             date: moment(new Date(statuses[i].created_at)).fromNow(),
+             content: statuses[i].text
+           });
+         }
+         myCache.set('twitter', twArray);
+         res.json(myCache.get('twitter'));
+       });
+  } else {
+    res.json(myCache.get('twitter'));
+  }
 });
 
 router.get('/github', function(req, res) {
