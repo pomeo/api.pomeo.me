@@ -27,6 +27,8 @@ router.get('/', function(req, res) {
 });
 
 router.get('/github', function(req, res) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
   if (Object.getOwnPropertyNames(myCache.get('github')).length == 0) {
     rest.get('https://github.com/pomeo.atom', {
       parser: rest.parsers.xml
