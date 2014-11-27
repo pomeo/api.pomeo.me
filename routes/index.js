@@ -56,7 +56,7 @@ router.get('/github', function(req, res) {
           githubArray.push({
             title: '<div class="b-title">' + result['feed']['entry'][i]['title'] + '</div>',
             date: '<time datetime="' + result['feed']['entry'][i]['published'] + '">about ' + moment(result['feed']['entry'][i]['published']).fromNow() + '</time>',
-            content: result['feed']['entry'][i]['content']
+            content: result['feed']['entry'][i]['content'].replace(new RegExp('(href\=\")[^http]', 'g'), 'href="https:\/\/github.com\/')
           });
         }
         myCache.set('github', githubArray);
