@@ -27,6 +27,12 @@ router.get('/', function(req, res) {
   res.send('ok');
 });
 
+router.get('/twitter', function(req, res) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
+  res.send('ok');
+});
+
 router.get('/github', function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
