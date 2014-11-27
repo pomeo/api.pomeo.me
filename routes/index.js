@@ -24,6 +24,20 @@ router.get('/', function(req, res) {
   res.send('ok');
 });
 
+router.get('/github', function(req, res) {
+  rest.get('https://github.com/pomeo.atom', {
+    parser: rest.parsers.xml
+  }).once('complete', function(result) {
+    if (result instanceof Error) {
+      log('Error:' + result.message, 'error');
+      res.send('ok');
+    } else {
+      log(typeof result);
+      res.send('ok');
+    }
+  });
+});
+
 module.exports = router;
 
 function log(logMsg, logType) {
