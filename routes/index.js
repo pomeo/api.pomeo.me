@@ -2,14 +2,23 @@ var express    = require('express'),
     router     = express.Router(),
     winston    = require('winston'),
     xml2js     = require('xml2js'),
-    logger     = new (winston.Logger)({
-      transports: [
-        new (winston.transports.Console)()
-      ]
-    }),
     moment     = require('moment'),
     rest       = require('restler'),
     Logentries = require('winston-logentries');
+
+if (process.env.NODE_ENV === 'development') {
+  var logger = new (winston.Logger)({
+    transports: [
+      new (winston.transports.Console)()
+    ]
+  });
+} else {
+  var logger = new (winston.Logger)({
+    transports: [
+      new winston.transports.Logentries({token: process.env.logentries})
+    ]
+  });
+}
 
 router.get('/', function(req, res) {
   res.send('ok');
