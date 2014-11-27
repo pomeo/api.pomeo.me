@@ -37,7 +37,20 @@ router.get('/', function(req, res) {
 router.get('/twitter', function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
-  res.send('ok');
+  T.get('statuses/user_timeline', {
+    screen_name: 'pomeo',
+    count: 2
+  }, function (err, statuses) {
+       var twArray = [];
+       for (var i = 0; i < statuses.length; i++) {
+         twArray.push({
+           url: 'https://twitter.com/pomeo/statuses/' + statuses[i].id_str,
+           date: moment(statuses[i].created_at).fromNow(),
+           content: statuses[i].text
+         });
+       }
+       res.json(twArray);
+  });
 });
 
 router.get('/github', function(req, res) {
