@@ -9,7 +9,7 @@ var express    = require('express'),
     }),
     moment     = require('moment'),
     rest       = require('restler'),
-    debugOn    = true;
+    Logentries = require('winston-logentries');
 
 router.get('/', function(req, res) {
   res.send('ok');
