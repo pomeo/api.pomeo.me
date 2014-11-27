@@ -27,24 +27,29 @@ router.get('/', function(req, res) {
 });
 
 router.get('/github', function(req, res) {
-  rest.get('https://github.com/pomeo.atom', {
-    parser: rest.parsers.xml
-  }).once('complete', function(result) {
-    if (result instanceof Error) {
-      log('Error:' + result.message, 'error');
-      res.send('ok');
-    } else {
-      var githubArray = [];
-      for (var i = 0; i < 2; i++) {
-        githubArray.push({
-          title: result['feed']['entry'][i]['title'],
-          date: result['feed']['entry'][i]['published'],
-          content: result['feed']['entry'][i]['content']
-        });
+  if (Object.getOwnPropertyNames(myCache.get('github')).length == 0) {
+    rest.get('https://github.com/pomeo.atom', {
+      parser: rest.parsers.xml
+    }).once('complete', function(result) {
+      if (result instanceof Error) {
+        log('Error:' + result.message, 'error');
+        res.send('ok');
+      } else {
+        var githubArray = [];
+        for (var i = 0; i < 2; i++) {
+          githubArray.push({
+            title: result['feed']['entry'][i]['title'],
+            date: result['feed']['entry'][i]['published'],
+            content: result['feed']['entry'][i]['content']
+          });
+        }
+        myCache.set('github', githubArray);
+        res.json(myCache.get('github'));
       }
-      res.json(githubArray);
-    }
-  });
+    });
+  } else {
+    res.json(myCache.get('github'));
+  }
 });
 
 module.exports = router;
