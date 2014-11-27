@@ -32,8 +32,15 @@ router.get('/github', function(req, res) {
       log('Error:' + result.message, 'error');
       res.send('ok');
     } else {
-      log(typeof result);
-      res.send('ok');
+      var githubArray = [];
+      for (var i = 0; i < 2; i++) {
+        githubArray.push({
+          title: result['feed']['entry'][i]['title'],
+          date: result['feed']['entry'][i]['published'],
+          content: result['feed']['entry'][i]['content']
+        });
+      }
+      res.json(githubArray);
     }
   });
 });
