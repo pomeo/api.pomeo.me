@@ -41,7 +41,7 @@ router.get('/github', function(req, res) {
         for (var i = 0; i < 2; i++) {
           githubArray.push({
             title: result['feed']['entry'][i]['title'],
-            date: result['feed']['entry'][i]['published'],
+            date: '<time datetime="' + result['feed']['entry'][i]['published'] + '">about ' + moment(result['feed']['entry'][i]['published']).fromNow() + '</time>',
             content: result['feed']['entry'][i]['content']
           });
         }
