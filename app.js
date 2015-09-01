@@ -1,6 +1,5 @@
-require('strong-agent').profile();
 var express = require('express');
-var debug = require('debug')('api.pomeo.me');
+var debug = require('debug')('app');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -45,7 +44,12 @@ app.use(function(err, req, res, next) {
   res.sendStatus(500);
 });
 
-
-var server = app.listen(app.get('port'), function() {
-               debug('Express server listening on port ' + server.address().port);
+var server = app.listen(app.get('port'), '127.0.0.1', function() {
+               debug('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
              });
+
+// server with small memory, need manual release
+setInterval(function () {
+  global.gc();
+  console.log((process.memoryUsage().rss / 1024 / 1024).toFixed(2) + 'Mb');
+}, 10000);
