@@ -11,7 +11,7 @@
     "moment": "^2.8.4",
     "morgan": "^1.0.0",
     "node-cache": "^1.0.3",
-    "restler": "pomeo/restler",
+    "restler": "^3.3.0",
     "serve-favicon": "^2.0.0",
     "strong-agent": "^1.0.3",
     "twit": "^1.1.18",
