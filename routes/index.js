@@ -72,8 +72,8 @@ router.get('/github', function(req, res) {
         var githubArray = [];
         for (var i = 0; i < 2; i++) {
           githubArray.push({
-            date: '<time datetime="' + result['feed']['entry'][i]['published'] + '">' + moment(result['feed']['entry'][i]['published']).fromNow() + '</time>',
-            content: result['feed']['entry'][i]['content'].replace(new RegExp('(href\=\")[^http]', 'g'), 'href="https:\/\/github.com\/')
+            date: '<time datetime="' + result['feed']['entry'][i]['published'] + '">' + moment(result.feed.entry[i].published).fromNow() + '</time>',
+            content: result.feed.entry[i].content[0]._.replace(new RegExp('(href\=\")[^http]', 'g'), 'href="https:\/\/github.com\/')
           });
         }
         myCache.set('github', githubArray);
