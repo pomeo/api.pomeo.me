@@ -1,22 +1,21 @@
 {
   "name": "api.pomeo.me",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node-dev --expose-gc --harmony app.js"
   },
   "dependencies": {
-    "debug": "^2.0.0",
-    "express": "^4.0.0",
-    "moment": "^2.8.4",
-    "morgan": "^1.0.0",
-    "node-cache": "^1.0.3",
+    "debug": "^2.2.0",
+    "express": "^4.13.3",
+    "le_node": "^1.1.0",
+    "lodash": "^3.10.1",
+    "moment": "^2.10.6",
+    "morgan": "^1.6.1",
+    "node-cache": "^3.0.0",
     "restler": "^3.3.0",
-    "serve-favicon": "^2.0.0",
-    "strong-agent": "^1.0.3",
-    "twit": "^1.1.18",
-    "winston": "^0.8.0",
-    "winston-logentries": "^1.0.1",
-    "xml2js": "^0.4.4"
+    "serve-favicon": "^2.3.0",
+    "twit": "^2.1.0",
+    "winston": "^1.0.1"
   }
 }
