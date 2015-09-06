@@ -1,12 +1,13 @@
-var express = require('express');
-var debug = require('debug')('app');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+'use strict';
+const express = require('express');
+const debug = require('debug')('app');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
 
-var routes = require('./routes/index');
+let routes = require('./routes/index');
 
-var app = express();
+const app = express();
 
 app.set('port', process.env.PORT || 3000);
 
@@ -44,9 +45,9 @@ app.use(function(err, req, res, next) {
   res.sendStatus(500);
 });
 
-var server = app.listen(app.get('port'), '127.0.0.1', function() {
-               debug('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
-             });
+app.listen(app.get('port'), '127.0.0.1', function() {
+  debug('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+});
 
 // server with small memory, need manual release
 setInterval(function () {
