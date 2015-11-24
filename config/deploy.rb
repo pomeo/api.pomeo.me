@@ -16,4 +16,7 @@ set :supervisord_stop_group,  "app"
 set  :gateway,    "#{application}" # main server
 role :app,        "10.3.90.1"      # container
 
-after "deploy:create_symlink", "deploy:npm_install", "deploy:cleanup", "deploy:restart"
+after "deploy:create_symlink",
+      "deploy:npm_install",
+      "deploy:cleanup",
+      "deploy:restart"
