@@ -45,7 +45,7 @@ app.use(function(err, req, res, next) {
   res.sendStatus(500);
 });
 
-app.listen(app.get('port'), '127.0.0.1', function() {
+app.listen(app.get('port'), '0.0.0.0', function() {
   debug('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
 });
 
