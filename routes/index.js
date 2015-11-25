@@ -1,7 +1,18 @@
 'use strict';
 const express    = require('express');
 const router     = express.Router();
-const winston    = require('winston');
+const log        = require('winston-logs')({
+  production: {
+    logentries: {
+      token: process.env.logentries
+    }
+  },
+  development: {
+    'console': {
+      colorize: true
+    }
+  }
+});
 const moment     = require('moment');
 const rest       = require('restler');
 const _          = require('lodash');
@@ -17,25 +28,6 @@ let T = new Twit({
   access_token:        process.env.TWITTER_ACCESS_TOKEN,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
-
-let logger;
-
-if (process.env.NODE_ENV === 'development') {
-  logger = new (winston.Logger)({
-    transports: [
-      new (winston.transports.Console)()
-    ]
-  });
-} else {
-  require('le_node');
-  logger = new (winston.Logger)({
-    transports: [
-      new winston.transports.Logentries({
-        token: process.env.logentries
-      })
-    ]
-  });
-}
 
 router.get('/', function(req, res) {
   res.send('ok');
@@ -112,12 +104,3 @@ router.get('/github', function(req, res) {
 });
 
 module.exports = router;
-
-function log(logMsg, logType) {
-  if (logMsg instanceof Error) logger.error(logMsg.stack);
-  if (!_.isUndefined(logType)) {
-    logger.log(logType, logMsg);
-  } else {
-    logger.info(logMsg);
-  }
-}
