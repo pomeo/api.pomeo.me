@@ -3,19 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node-dev --expose-gc --harmony app.js"
+    "start": "node-dev app.js"
   },
   "dependencies": {
     "debug": "^2.2.0",
     "express": "^4.13.3",
-    "le_node": "^1.1.0",
-    "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "morgan": "^1.6.1",
     "node-cache": "^3.0.0",
-    "restler": "^3.3.0",
+    "restler": "^3.4.0",
     "serve-favicon": "^2.3.0",
-    "twit": "^2.1.0",
-    "winston": "^1.0.1"
+    "twit": "^2.1.1",
+    "winston-logs": "^1.0.0"
   }
 }
