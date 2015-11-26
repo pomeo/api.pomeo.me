@@ -21,7 +21,7 @@ const myCache    = new NodeCache({
   stdTTL: 3600, checkperiod: 120
 });
 
-let T = new Twit({
+const T = new Twit({
   consumer_key:        process.env.TWITTER_CONSUMER_KEY,
   consumer_secret:     process.env.TWITTER_CONSUMER_KEY_SECRET,
   access_token:        process.env.TWITTER_ACCESS_TOKEN,
