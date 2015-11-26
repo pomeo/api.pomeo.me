@@ -15,7 +15,6 @@ const log        = require('winston-logs')({
 });
 const moment     = require('moment');
 const rest       = require('restler');
-const _          = require('lodash');
 const Twit       = require('twit');
 const NodeCache  = require('node-cache');
 const myCache    = new NodeCache({
@@ -41,7 +40,7 @@ router.get('/twitter', function(req, res) {
       log('Error: ' + err);
       res.send('err');
     } else {
-      if (_.isUndefined(value)) {
+      if (value === undefined) {
         T.get('statuses/user_timeline', {
           screen_name: 'pomeo',
           count: 2
@@ -77,7 +76,7 @@ router.get('/github', function(req, res) {
       log('Error: ' + err);
       res.send('err');
     } else {
-      if (_.isUndefined(value)) {
+      if (value === undefined) {
         rest.get('https://github.com/pomeo.atom', {
           parser: rest.parsers.xml
         }).once('complete', function(result) {
