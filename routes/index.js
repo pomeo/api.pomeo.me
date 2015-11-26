@@ -35,7 +35,7 @@ router.get('/', function(req, res) {
 router.get('/twitter', function(req, res) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type,X-Requested-With');
-  myCache.get('github', function(err, value){
+  myCache.get('twitter', function(err, value){
     if (err) {
       log('Error: ' + err);
       res.send('err');
