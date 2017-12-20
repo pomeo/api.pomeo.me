@@ -1,11 +1,15 @@
 {
   "name": "api.pomeo.me",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
-    "start": "node-dev app.js"
+    "start": "cross-env DEBUG=app NODE_ENV=development nodemon app.js",
+    "start:prod": "cross-env NODE_ENV=production node app.js",
+    "slate": "rimraf node_modules && npm install"
   },
   "dependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
     "debug": "^2.2.0",
     "express": "^4.13.3",
     "moment": "^2.10.6",
@@ -13,7 +17,12 @@
     "node-cache": "^3.0.0",
     "restler": "^3.4.0",
     "serve-favicon": "^2.3.0",
-    "twit": "^2.1.1",
-    "winston-logs": "^1.0.0"
+    "winston": "^2.4.0",
+    "winston-graylog2": "^0.7.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.1",
+    "nodemon": "^1.13.3",
+    "rimraf": "^2.6.2"
   }
 }
