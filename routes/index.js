@@ -31,7 +31,6 @@ router.get('/github', function(req, res) {
           } else {
             let githubArray = [];
             for (var i = 0; i < 2; i++) {
-              logger.info(result.feed.entry[i].content[0]._);
               githubArray.push({
                 date: '<time datetime="' + result.feed.entry[i].published[0] + '">' + moment(result.feed.entry[i].published[0]).fromNow() + '</time>',
                 content: result.feed.entry[i].content[0]._.replace(new RegExp('(href\=\")[^http]', 'g'), 'href="https:\/\/github.com\/')
